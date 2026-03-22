@@ -116,3 +116,6 @@ Renders a flow/Sankey diagram showing relationships and bandwidth.
 #### `renderCustomChart(title, option, [size])`
 If you need highly specialized visual configuration, this method allows raw [ECharts Option Configuration Objects](https://echarts.apache.org/en/option.html) to be fed directly into an eDash tile wrapper.
 - `option` (Object | Function): A plain JS object defining the ECharts Option, or a function resolving to one.
+
+### Screenshots
+<img width="771" height="880" alt="image" src="https://github.com/user-attachments/assets/682aea8d-e3f8-4a1b-a684-2372049145a6" />
