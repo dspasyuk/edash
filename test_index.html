@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eDash Themes Preview</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="./public/css/edash.css">
+    <script src="./public/js/edash.js"></script>
+    <style>
+        body { 
+            background-color: var(--theme-dashboard-bg, #f4f7f6); 
+            transition: background-color 0.3s; 
+            margin: 0; padding: 20px 0; font-family: sans-serif; 
+        }
+        .header { 
+            text-align: center; margin-bottom: 20px; 
+            color: var(--theme-title-text, #333); 
+            transition: color 0.3s; 
+        }
+        
+        .jp_chart_container { position: relative; }
+        
+        .micro-stack {
+            display: inline-flex;
+            flex-direction: column;
+            grid-column: span 2;
+        }
+
+        .theme-switcher {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .theme-switcher button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 1px solid var(--theme-border, #ccc);
+            background: var(--theme-tile-bg, #fff);
+            color: var(--theme-title-text, #333);
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .theme-switcher button:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Dashboard Themes Preview</h1>
+        <p>Using CSS Variables natively coupled directly to the ECharts Renderer Options</p>
+    </div>
+
+    <div class="theme-switcher">
+        <button onclick="window.dashboardInstance.setTheme('default')">Classic Theme</button>
+        <button onclick="window.dashboardInstance.setTheme('dark')">Dark Theme</button>
+        <button onclick="window.dashboardInstance.setTheme('pastel')">Pastel Theme</button>
+        <button onclick="window.dashboardInstance.setTheme('ocean')">Ocean Theme</button>
+        <button onclick="window.dashboardInstance.setTheme('sunset')">Sunset Theme</button>
+    </div>
+
+    <div id="my-dashboard"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mockData = {
+                projSec: {
+                    "2025-Q1": { "Materials": 18, "Health": 4, "Environment": 7 },
+                    "2025-Q2": { "Materials": 11, "Health": 14, "Environment": 2 },
+                    "2025-Q3": { "Materials": 21, "Health": 6, "Environment": 8 },
+                    "2025-Q4": { "Materials": 9, "Health": 17, "Environment": 5 },
+                    "2026-Q1": { "Materials": 14, "Health": 9, "Environment": 6 },
+                    "2026-Q2": { "Materials": 20, "Health": 11, "Environment": 4 },
+                    "2026-Q3": { "Materials": 26, "Health": 8, "Environment": 9 },
+                    "2026-Q4": { "Materials": 15, "Health": 16, "Environment": 3 },
+                },
+                yearlySectorsActivity: { "Materials": 240500, "Health": 134200, "Environment": 95300 },
+                yearlyClientActivity: { "Returning": 68, "New": 24, "Re-engaged": 13 }
+            };
+
+            const sectorColors = {
+                "Materials": "var(--theme-blue)", "Environment": "var(--theme-green)", "Health": "var(--theme-red)",
+                "Returning": "var(--theme-dark-green)", "New": "var(--theme-dark-blue)", "Re-engaged": "var(--theme-yellow)"
+            };
+
+            const dashboard = new edash('my-dashboard', 'default');
+            window.dashboardInstance = dashboard;
+
+            // --- ROW 1: KPIs (Span total = 18 Columns) ---
+            dashboard.addMicroStack([
+                { title: "M1", value: "37", colorClass: "red" },
+                { title: "M2", value: "8", colorClass: "dark-blue" }
+            ]);
+
+            dashboard.addSmallTile("Income", "$3.4M", "+18% vs last Q", "blue");
+            dashboard.addSmallTile("Deals", "62", "Top Sector: Materials", "dark-green");
+            dashboard.addSmallTile("Growth", "24%", "YTD", "green");
+            dashboard.addMediumTile("Clients", "1,840", "Projects", "512", "Global Reach", "yellow");
+            dashboard.addMediumTile("Revenue", "$11.5M", "Expenses", "$5.8M", "Net Margin", "purple");
+            dashboard.addSmallTile("Clicks", "142k", "Online", "red"); 
+            dashboard.addSmallTile("Users", "210k", "Online", "blue"); 
+
+            // --- ROW 2 & 3: DOM Placement for 2D Grid packing ---
+
+            dashboard.renderBarChart("Long (span 6, grid-row: span 2)", mockData.projSec, "Qtr", "long", sectorColors);
+            dashboard.renderPieChart("Large (span 6)", mockData.yearlySectorsActivity, "large", false, sectorColors);
+            dashboard.renderPieChart("Large (span 6)", mockData.yearlyClientActivity, "large", true, sectorColors);
+            dashboard.renderBarChart("XLarge (span 12)", mockData.projSec, "Quarters", "xlarge", sectorColors);
+            
+            // --- ROW 4: Charts ---
+            dashboard.renderBarChart(
+                "XXLarge (span 18 - Full Width)",
+                {
+                    "2025-Q1": { "Materials": 41000, "Health": 26000, "Environment": 12000 },
+                    "2025-Q2": { "Materials": 59000, "Health": 48000, "Environment": 18500 },
+                    "2025-Q3": { "Materials": 36000, "Health": 31000, "Environment": 29000 },
+                    "2025-Q4": { "Materials": 71000, "Health": 54000, "Environment": 20400 },
+                    "2026-Q1": { "Materials": 52000, "Health": 35500, "Environment": 16000 },
+                    "2026-Q2": { "Materials": 68000, "Health": 42000, "Environment": 22000 },
+                    "2026-Q3": { "Materials": 44000, "Health": 58000, "Environment": 31000 },
+                    "2026-Q4": { "Materials": 83000, "Health": 49000, "Environment": 16500 },
+                },
+                "Financial Quarters (2025)",
+                "xxlarge",
+                sectorColors
+            );
+            // --- ROW 5: Advanced Charts ---
+            dashboard.renderGaugeChart("Completion", 78, "large", 0, 100, "var(--theme-green)");
+            dashboard.renderGaugeChart("Risk", 45, "large", 0, 100, "var(--theme-red)");
+            
+            dashboard.renderTreemapChart("Divisions Breakdown", {
+                "North America": 450,
+                "Europe": 320,
+                "Asia": 210,
+                "South America": 100,
+                "Africa": 80
+            }, "large");
+
+            dashboard.renderSankeyChart("Energy Flow", [
+                {name: "Solar"}, {name: "Wind"}, {name: "Coal"}, 
+                {name: "Grid"}, {name: "Homes"}, {name: "Industry"}
+            ], [
+                {source: "Solar", target: "Grid", value: 40},
+                {source: "Wind", target: "Grid", value: 30},
+                {source: "Coal", target: "Grid", value: 20},
+                {source: "Grid", target: "Homes", value: 50},
+                {source: "Grid", target: "Industry", value: 40}
+            ], "xlarge");
+        });
+    </script>
+</body>
+</html>
