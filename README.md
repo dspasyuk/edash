@@ -119,3 +119,5 @@ If you need highly specialized visual configuration, this method allows raw [ECh
 
 ### Screenshots
 <img width="771" height="880" alt="image" src="https://github.com/user-attachments/assets/682aea8d-e3f8-4a1b-a684-2372049145a6" />
+<img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/8be2ff46-ccef-46fd-91e6-ef9ae5db91d3" />
+
