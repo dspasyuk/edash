@@ -118,6 +118,9 @@ If you need highly specialized visual configuration, this method allows raw [ECh
 - `option` (Object | Function): A plain JS object defining the ECharts Option, or a function resolving to one.
 
 ### Screenshots
-<img width="771" height="880" alt="image" src="https://github.com/user-attachments/assets/682aea8d-e3f8-4a1b-a684-2372049145a6" />
+<img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/7196879b-b9a6-4880-b380-9ece4f743aa0" />
+<img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/a30dc5f3-a3e8-41bd-9544-d4dcda6e84ae" />
+<img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/fd9535f3-a3a0-4768-ae48-53cfa8506c49" />
+<img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/b2002ea1-0faa-4118-b17d-fb90c717166f" />
 <img width="1533" height="1284" alt="image" src="https://github.com/user-attachments/assets/8be2ff46-ccef-46fd-91e6-ef9ae5db91d3" />
 
