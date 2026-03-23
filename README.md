@@ -12,7 +12,7 @@ A lightweight, themeable dashboard and charting library built on top of native C
 ## Quick Start
 
 ### 1. Include Dependencies
-Include `echarts`, the `j2p.css` stylesheet, and the `edash.js` library.
+Include `echarts`, the `edash.css` stylesheet, and the `edash.js` library.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
