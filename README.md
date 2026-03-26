@@ -2,6 +2,8 @@
 
 A lightweight, themeable dashboard and charting library built on top of native CSS Grid Layout and [Apache ECharts](https://echarts.apache.org/). It is designed to make it effortless to create beautiful, responsive, and dynamic data dashboards using a modular tile system with built-in theme switching.
 
+## Live Preview Live Preview here https://dspasyuk.github.io/edash 
+
 ## Features
 - **CSS Grid Layout**: Automatically handles the responsive flow of tiles of various sizes (micro, small, medium, large, etc.).
 - **Dynamic Native Theming**: Switch between 5 distinct themes simultaneously changing the CSS Variables for standard DOM elements while intelligently forcing ECharts to re-render to match the active theme.
